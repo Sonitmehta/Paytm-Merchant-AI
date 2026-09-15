@@ -9,3 +9,6 @@ ENV/
 .idea/
 .vscode/
 *.log
+
+*.pdf
+*.pptx
