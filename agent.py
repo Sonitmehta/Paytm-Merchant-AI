@@ -1,4 +1,4 @@
-# Core Agent Logic — Powered by Google Gemini 2.0 Flash & LangGraph
+# Core Agent Logic — Powered by Google Gemini Flash & LangGraph
 from langchain_google_genai import ChatGoogleGenerativeAI
 from langgraph.prebuilt import create_react_agent
 from langchain_core.messages import HumanMessage, AIMessage, SystemMessage

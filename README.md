@@ -26,7 +26,7 @@ Then open http://localhost:8501 in your browser.
 ```
 paytm_merchant_ai/
 ├── app.py          # Streamlit frontend (dashboard + chat)
-├── agent.py        # LangChain agent with Gemini 2.0 Flash
+├── agent.py        # LangChain agent with Google Gemini Flash
 ├── tools.py        # 6 autonomous action tools
 ├── data.py         # Mock merchant data (Paytm-style)
 ├── requirements.txt
@@ -43,7 +43,7 @@ paytm_merchant_ai/
 6. **Generates** a full daily business summary
 
 ## 🛠️ Tech Stack
-- **LLM:** Google Gemini 2.0 Flash via Google AI Studio (Free Tier)
+- **LLM:** Google Gemini Flash via Google AI Studio (Free Tier)
 - **Agent Framework:** LangChain (Tool Calling Agent)
 - **Frontend:** Streamlit
 - **Charts:** Plotly
