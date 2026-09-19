@@ -7,6 +7,10 @@ import json
 ACTION_LOG = []
 
 def log_action(action_type, details):
+    # Prevent duplicate daily summary entries
+    if action_type == "daily_summary":
+        if any(a.get("type") == "daily_summary" for a in ACTION_LOG):
+            return details
     ACTION_LOG.append({"type": action_type, "details": details})
     return details
 
@@ -119,4 +123,8 @@ def get_all_tools():
     ]
 
 def get_action_log():
-    return ACTION_LOG
+    return list(ACTION_LOG)
+
+def clear_action_log():
+    global ACTION_LOG
+    ACTION_LOG.clear()

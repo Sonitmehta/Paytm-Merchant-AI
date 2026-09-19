@@ -682,11 +682,12 @@ if run_scan:
         try:
             import agent, importlib
             importlib.reload(agent)
+            from tools import clear_action_log, get_action_log
+            clear_action_log()
             key = api_key if (api_key and len(api_key) > 10) else ""
             result = agent.run_autonomous_scan(key)
             output = result.get('output', 'Scan complete.')
             st.session_state.messages.append({'role': 'assistant', 'content': output})
-            from tools import get_action_log
             st.session_state.action_log = get_action_log()
             st.rerun()
         except Exception as e:
@@ -753,7 +754,17 @@ if st.session_state.action_log:
         },
     }
 
-    for i, action in enumerate(reversed(st.session_state.action_log[-8:])):
+    # Cleanly display unique recent actions (deduplicate so Daily Summary only appears once)
+    seen_summary = False
+    unique_actions = []
+    for a in reversed(st.session_state.action_log):
+        if a.get('type') == 'daily_summary':
+            if seen_summary:
+                continue
+            seen_summary = True
+        unique_actions.append(a)
+    
+    for i, action in enumerate(unique_actions[:8]):
         atype   = action.get('type', 'action')
         details = action.get('details', {})
         meta    = ACTION_META.get(atype, {
