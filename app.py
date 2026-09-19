@@ -43,8 +43,8 @@ button[title="View app in Streamlit Community Cloud"],
 [data-testid="stHeader"] button {
     visibility: visible !important;
     opacity: 1 !important;
-    background: rgba(0, 186, 242, 0.15) !important;
-    border: 1.5px solid #00BAF2 !important;
+    background: transparent !important;
+    border: none !important;
     border-radius: 8px !important;
 }
 [data-testid="stToolbar"] svg,
@@ -173,14 +173,18 @@ label, .stWidgetLabel, [data-testid="stWidgetLabel"] p {
     font-weight: 600 !important;
 }
 [data-testid="stSidebar"] .stSelectbox > div > div {
-    background: #FFFFFF !important;
-    color: #001538 !important;
+    background: rgba(0, 21, 56, 0.85) !important;
+    color: #FFFFFF !important;
     border: 2px solid #00BAF2 !important;
     border-radius: 8px !important;
     font-weight: 800 !important;
 }
+[data-testid="stSidebar"] .stSelectbox > div > div span,
+[data-testid="stSidebar"] [data-baseweb="select"] span {
+    color: #FFFFFF !important;
+}
 [data-testid="stSidebar"] .stSelectbox svg {
-    fill: #002970 !important;
+    fill: #00BAF2 !important;
 }
 [data-testid="stSidebar"] [data-testid="stExpander"] {
     background: rgba(255, 255, 255, 0.12) !important;
@@ -301,6 +305,15 @@ label, .stWidgetLabel, [data-testid="stWidgetLabel"] p {
     color: #002970 !important;
     font-weight: 800 !important;
     font-size: 1rem !important;
+}
+/* Light mode — force dark text on ALL inner expander content */
+[data-testid="stExpander"] p,
+[data-testid="stExpander"] span,
+[data-testid="stExpander"] li,
+[data-testid="stExpander"] div,
+[data-testid="stExpander"] code,
+[data-testid="stExpander"] pre {
+    color: #000000 !important;
 }
 @media (prefers-color-scheme: dark) {
     [data-testid="stExpander"] {
