@@ -73,12 +73,12 @@ button[title="View app in Streamlit Community Cloud"],
 .paytm-header {
     font-size: 2.2rem;
     font-weight: 900;
-    color: #002970;
+    color: #001538 !important;
     letter-spacing: -0.5px;
     margin-bottom: 2px;
 }
 .paytm-header span {
-    color: #00BAF2;
+    color: #00BAF2 !important;
     text-shadow: 0 0 12px rgba(0, 186, 242, 0.3);
 }
 @media (prefers-color-scheme: dark) {
@@ -306,24 +306,65 @@ label, .stWidgetLabel, [data-testid="stWidgetLabel"] p {
     font-weight: 800 !important;
     font-size: 1rem !important;
 }
-/* Light mode — force dark text on ALL inner expander content */
+/* Light mode expander inner content: clear dark text, distinct cyan/blue code & accents */
 [data-testid="stExpander"] p,
 [data-testid="stExpander"] span,
-[data-testid="stExpander"] li,
-[data-testid="stExpander"] div,
-[data-testid="stExpander"] code,
-[data-testid="stExpander"] pre {
-    color: #000000 !important;
+[data-testid="stExpander"] li {
+    color: #001538 !important;
+}
+[data-testid="stExpander"] strong,
+[data-testid="stExpander"] b {
+    color: #002970 !important;
+    font-weight: 800 !important;
+}
+[data-testid="stExpander"] code {
+    background: #F0F9FF !important;
+    color: #0369A1 !important;
+    border: 1px solid #BAE6FD !important;
+    padding: 2px 6px !important;
+    border-radius: 4px !important;
+    font-weight: 700 !important;
 }
 @media (prefers-color-scheme: dark) {
     [data-testid="stExpander"] {
         background: #001A4A !important;
         border-color: #00BAF2 !important;
     }
-    [data-testid="stExpander"] summary,
+    [data-testid="stExpander"] summary {
+        color: #00BAF2 !important;
+    }
     [data-testid="stExpander"] p,
-    [data-testid="stExpander"] span {
-        color: #FFFFFF !important;
+    [data-testid="stExpander"] span,
+    [data-testid="stExpander"] li,
+    [data-testid="stExpander"] div {
+        color: #F8FAFC !important;
+    }
+    [data-testid="stExpander"] strong,
+    [data-testid="stExpander"] b {
+        color: #38BDF8 !important;
+        font-weight: 800 !important;
+    }
+    [data-testid="stExpander"] code {
+        background: rgba(0, 186, 242, 0.15) !important;
+        color: #E0F2FE !important;
+        border: 1px solid #00BAF2 !important;
+    }
+}
+.action-info-banner {
+    background: #EFF6FF;
+    border-left: 3px solid #00BAF2;
+    border-radius: 6px;
+    padding: 8px 12px;
+    margin-bottom: 10px;
+    color: #1E3A5F !important;
+    font-size: 0.88rem;
+    font-weight: 600;
+}
+@media (prefers-color-scheme: dark) {
+    .action-info-banner {
+        background: rgba(0, 41, 112, 0.6) !important;
+        color: #E0F2FE !important;
+        border-left: 3px solid #00BAF2 !important;
     }
 }
 
@@ -704,9 +745,7 @@ if st.session_state.action_log:
         })
         with st.expander(f"{meta['icon']} **{meta['label']}**", expanded=(i == 0)):
             st.markdown(
-                f"<div style='background:#EFF6FF; border-left:3px solid #00BAF2; "
-                f"border-radius:6px; padding:8px 12px; margin-bottom:10px; "
-                f"color:#1E3A5F; font-size:0.88rem;'>"
+                f"<div class='action-info-banner'>"
                 f"ℹ️ {meta['desc']}</div>",
                 unsafe_allow_html=True
             )
