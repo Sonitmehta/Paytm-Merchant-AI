@@ -47,15 +47,17 @@ def flag_slow_inventory(item_name: str, days_unsold: int, suggested_action: str)
 @tool
 def draft_promotional_offer(offer_title: str, target_items: str, discount_percent: int, valid_days: int) -> str:
     """Drafts a promotional offer for slow-moving or seasonal items to boost sales."""
+    ctx = get_merchant_context()
+    m = ctx["merchant"]
     offer = (
-        f"🎉 *{MERCHANT['name']} Special Offer!*\n"
+        f"🎉 *{m['name']} Special Offer!*\n"
         f"━━━━━━━━━━━━━━━━━━━━━\n"
         f"📦 Items: {target_items}\n"
         f"💰 Discount: {discount_percent}% OFF\n"
         f"⏰ Valid for: {valid_days} days only\n"
-        f"📲 Pay via Paytm & get extra cashback!\n"
+        f"📲 Pay via Paytm UPI: {m.get('upi_id', 'merchant@paytm')} & get instant cashback!\n"
         f"━━━━━━━━━━━━━━━━━━━━━\n"
-        f"Call/WhatsApp: {MERCHANT.get('phone', '98101-00000')}"
+        f"Call/WhatsApp: {m.get('phone', '+91-98765-43210')}"
     )
     result = {
         "action": "PROMO_DRAFTED",
@@ -69,23 +71,28 @@ def draft_promotional_offer(offer_title: str, target_items: str, discount_percen
 @tool
 def generate_daily_summary(date: str) -> str:
     """Generates a merchant daily business summary including sales performance, top items, and action items."""
-    s = SALES_TREND
-    growth = round(((s['today'] - s['yesterday']) / s['yesterday']) * 100, 1)
-    weekly_growth = round(((s['this_week'] - s['last_week']) / s['last_week']) * 100, 1)
+    ctx = get_merchant_context()
+    m = ctx["merchant"]
+    s = ctx["sales_trend"]
+    dues = ctx["pending_payments"]
+    
+    growth = round(((s['today'] - s['yesterday']) / s['yesterday']) * 100, 1) if s['yesterday'] else 0
+    weekly_growth = round(((s['this_week'] - s['last_week']) / s['last_week']) * 100, 1) if s['last_week'] else 0
     
     summary = (
         f"📊 *Daily Summary — {date}*\n"
         f"━━━━━━━━━━━━━━━━━━━━━\n"
+        f"🏪 Business: {m['name']} ({m.get('category', 'Retail')})\n"
         f"💵 Today's Sales: ₹{s['today']:,} ({'+' if growth > 0 else ''}{growth}% vs yesterday)\n"
         f"📅 This Week: ₹{s['this_week']:,} ({'+' if weekly_growth > 0 else ''}{weekly_growth}% vs last week)\n"
         f"🔥 Best Sellers: {', '.join(s['best_selling_today'])}\n"
         f"🐢 Slow Movers: {', '.join(s['slowest_this_week'])}\n"
-        f"💳 Paytm Balance: ₹{MERCHANT['paytm_balance']:,}\n"
-        f"⏳ Pending Dues: {len(PENDING_PAYMENTS)} customers | "
-        f"₹{sum(p['amount'] for p in PENDING_PAYMENTS):,} total\n"
+        f"💳 Paytm Balance: ₹{m['paytm_balance']:,}\n"
+        f"⏳ Pending Receivables: {len(dues)} customers | "
+        f"₹{sum(p['amount'] for p in dues):,} total\n"
         f"━━━━━━━━━━━━━━━━━━━━━"
     )
-    log_action("daily_summary", {"date": date, "sales": s['today']})
+    log_action("daily_summary", {"date": date, "sales": s['today'], "merchant": m['name']})
     return summary
 
 @tool
