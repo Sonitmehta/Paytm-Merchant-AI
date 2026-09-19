@@ -25,84 +25,180 @@ if "active_profile" not in st.session_state:
 # ── PAYTM WHITE + BLUE THEME — FULL TEXT VISIBILITY ────────────────────────
 st.markdown("""
 <style>
-/* ── Base page ── */
-.stApp { background: #F4F7FA !important; }
+/* ── BASE PAGE ── */
+.stApp { background: #F4F7FA !important; color: #091E42 !important; }
 .block-container { padding-top: 1.5rem !important; max-width: 1280px; }
 
-/* ── ALL main-area text — dark navy, always readable ── */
-.stApp p, .stApp li, .stApp span,
+/* ── HEADER TOOLBAR, 3-DOTS MENU (⋮) & STATUS ICONS ── */
+header[data-testid="stHeader"] {
+    background: #002970 !important;
+}
+header[data-testid="stHeader"] * {
+    color: #FFFFFF !important;
+    fill: #FFFFFF !important;
+    stroke: #FFFFFF !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+header[data-testid="stHeader"] button,
+button[title="View app in Streamlit Community Cloud"],
+[data-testid="stStatusWidget"],
+[data-testid="stToolbar"] button,
+[data-testid="stMainMenu"] button {
+    color: #FFFFFF !important;
+    background: rgba(255, 255, 255, 0.15) !important;
+    border-radius: 8px !important;
+    border: 1px solid rgba(0, 186, 242, 0.5) !important;
+}
+[data-testid="stToolbar"] svg,
+[data-testid="stMainMenu"] svg {
+    fill: #00BAF2 !important;
+    stroke: #00BAF2 !important;
+}
+
+/* ── UNIVERSAL TEXT READABILITY (Ultra-dark & crisp) ── */
+.stApp p, .stApp li, .stApp span, .stApp div,
 .stMarkdown p, .stMarkdown li, .stMarkdown span,
 div[data-testid="stMarkdownContainer"] p,
 div[data-testid="stMarkdownContainer"] li,
-div[data-testid="stMarkdownContainer"] span {
-    color: #0F172A !important;
+div[data-testid="stMarkdownContainer"] span,
+div[data-testid="stMarkdownContainer"] strong,
+div[data-testid="stMarkdownContainer"] b {
+    color: #091E42 !important;
+    font-weight: 500;
 }
 .stApp h1, .stApp h2, .stApp h3, .stApp h4, .stApp h5 {
     color: #002970 !important;
+    font-weight: 800 !important;
 }
-label { color: #002970 !important; font-weight: 600 !important; }
-.stCaption, small, .stApp small { color: #475569 !important; }
+label, .stWidgetLabel, [data-testid="stWidgetLabel"] p {
+    color: #002970 !important;
+    font-weight: 700 !important;
+    font-size: 0.95rem !important;
+}
+.stCaption, small, .stApp small {
+    color: #334155 !important;
+    font-weight: 500 !important;
+}
 
-/* ── Metric cards text ── */
-[data-testid="stMetric"] label  { color: #002970 !important; font-weight: 700 !important; }
-[data-testid="stMetricValue"]   { color: #002970 !important; font-weight: 800 !important; }
-[data-testid="stMetricDelta"]   { color: #0F172A !important; }
+/* ── METRIC CARDS TEXT ── */
+[data-testid="stMetric"] {
+    background: #FFFFFF !important;
+    padding: 12px 16px !important;
+    border-radius: 12px !important;
+    border: 1px solid #CBD5E1 !important;
+    box-shadow: 0 2px 8px rgba(0,41,112,0.06) !important;
+}
+[data-testid="stMetric"] label,
+[data-testid="stMetricLabel"] p {
+    color: #002970 !important;
+    font-weight: 800 !important;
+    font-size: 0.95rem !important;
+}
+[data-testid="stMetricValue"], [data-testid="stMetricValue"] div {
+    color: #002970 !important;
+    font-weight: 900 !important;
+    font-size: 1.8rem !important;
+}
+[data-testid="stMetricDelta"], [data-testid="stMetricDelta"] div {
+    font-weight: 700 !important;
+}
 
-/* ── Input fields on main page ── */
+/* ── INPUT FIELDS ON MAIN PAGE (High contrast) ── */
 .stTextInput input, .stNumberInput input, .stTextArea textarea {
     background: #FFFFFF !important;
-    color: #0F172A !important;
-    border: 1.5px solid #CBD5E1 !important;
+    color: #091E42 !important;
+    border: 1.5px solid #00BAF2 !important;
     border-radius: 8px !important;
+    font-weight: 600 !important;
 }
 .stTextInput input:focus, .stNumberInput input:focus {
-    border-color: #00BAF2 !important;
-    box-shadow: 0 0 0 2px rgba(0,186,242,0.18) !important;
+    border-color: #002970 !important;
+    box-shadow: 0 0 0 2px rgba(0,186,242,0.25) !important;
 }
+
+/* ── SELECTBOX DROPDOWNS & MENUS ── */
 .stSelectbox > div > div {
     background: #FFFFFF !important;
-    color: #0F172A !important;
-    border: 1.5px solid #CBD5E1 !important;
+    color: #091E42 !important;
+    border: 1.5px solid #00BAF2 !important;
+    font-weight: 600 !important;
+}
+div[data-baseweb="select"] * {
+    color: #091E42 !important;
+    font-weight: 600 !important;
+}
+div[data-baseweb="popover"] ul,
+div[data-baseweb="menu"] {
+    background: #FFFFFF !important;
+}
+div[data-baseweb="menu"] li {
+    color: #091E42 !important;
+    background: #FFFFFF !important;
+    font-weight: 600 !important;
+}
+div[data-baseweb="menu"] li:hover {
+    background: #EBF8FF !important;
+    color: #002970 !important;
 }
 
-/* ── Expander text ── */
-[data-testid="stExpander"] p,
-[data-testid="stExpander"] span,
-[data-testid="stExpander"] li { color: #0F172A !important; }
-[data-testid="stExpander"] summary { color: #002970 !important; font-weight: 700 !important; }
+/* ── EXPANDER TEXT & PANELS ── */
 [data-testid="stExpander"] {
     background: #FFFFFF !important;
-    border: 1px solid #E2E8F0 !important;
+    border: 1.5px solid #CBD5E1 !important;
     border-radius: 10px !important;
-    box-shadow: 0 1px 6px rgba(0,41,112,0.06);
-    margin-bottom: 0.4rem;
+    box-shadow: 0 2px 8px rgba(0,41,112,0.06) !important;
+    margin-bottom: 0.5rem !important;
+}
+[data-testid="stExpander"] summary,
+[data-testid="stExpander"] summary span,
+[data-testid="stExpander"] summary p {
+    color: #002970 !important;
+    font-weight: 800 !important;
+    font-size: 1rem !important;
+}
+[data-testid="stExpander"] p,
+[data-testid="stExpander"] span,
+[data-testid="stExpander"] li {
+    color: #091E42 !important;
+    font-weight: 500 !important;
 }
 
-/* ── DataFrame / table ── */
+/* ── DATAFRAME / TABLE ── */
 [data-testid="stDataFrame"] td, [data-testid="stDataFrame"] th {
-    color: #0F172A !important;
+    color: #091E42 !important;
+    font-weight: 600 !important;
 }
-[data-testid="stDataFrame"] { border-radius: 10px; overflow: hidden; }
+[data-testid="stDataFrame"] {
+    border: 1px solid #CBD5E1 !important;
+    border-radius: 10px !important;
+    overflow: hidden;
+}
 
-/* ── Info / success / error boxes ── */
-.stAlert p, .stAlert span { color: #0F172A !important; }
+/* ── INFO / SUCCESS / ALERT BOXES ── */
+.stAlert p, .stAlert span {
+    color: #091E42 !important;
+    font-weight: 600 !important;
+}
 
-/* ── Chat messages ── */
-[data-testid="stChatMessage"] p,
-[data-testid="stChatMessage"] span,
-[data-testid="stChatMessage"] li { color: #0F172A !important; }
-
-/* ── Code blocks ── */
+/* ── CODE BLOCKS ── */
 code {
-    background: #EFF6FF !important; color: #1D4ED8 !important;
-    border-radius: 4px; padding: 1px 5px;
+    background: #EBF8FF !important;
+    color: #002970 !important;
+    font-weight: 700 !important;
+    border: 1px solid #BFDBFE !important;
+    border-radius: 4px;
+    padding: 2px 6px;
 }
-.stCodeBlock pre, .stCodeBlock code { color: #0F172A !important; }
+.stCodeBlock pre, .stCodeBlock code {
+    color: #091E42 !important;
+    font-weight: 600 !important;
+}
 
-/* ── SIDEBAR — white text on navy ── */
+/* ── SIDEBAR — CRISP WHITE ON DEEP NAVY ── */
 [data-testid="stSidebar"] {
-    background: linear-gradient(180deg, #002970 0%, #00408f 100%) !important;
-    box-shadow: 3px 0 18px rgba(0,41,112,0.18);
+    background: linear-gradient(180deg, #001A4A 0%, #002970 100%) !important;
+    box-shadow: 4px 0 20px rgba(0,41,112,0.25) !important;
 }
 [data-testid="stSidebar"],
 [data-testid="stSidebar"] p,
@@ -113,93 +209,120 @@ code {
 [data-testid="stSidebar"] small,
 [data-testid="stSidebar"] .stCaption {
     color: #FFFFFF !important;
+    font-weight: 500 !important;
+}
+[data-testid="stSidebar"] strong,
+[data-testid="stSidebar"] b {
+    color: #00BAF2 !important;
+    font-weight: 800 !important;
 }
 [data-testid="stSidebar"] h1,
 [data-testid="stSidebar"] h2,
-[data-testid="stSidebar"] h3 { color: #FFFFFF !important; font-weight: 700 !important; }
-[data-testid="stSidebar"] hr { border-color: rgba(0,186,242,0.4) !important; }
+[data-testid="stSidebar"] h3 {
+    color: #FFFFFF !important;
+    font-weight: 800 !important;
+}
+[data-testid="stSidebar"] hr {
+    border-color: rgba(0,186,242,0.5) !important;
+}
 
-/* Sidebar inputs — semi-transparent white bg, white text */
+/* Sidebar inputs */
 [data-testid="stSidebar"] .stTextInput input,
 [data-testid="stSidebar"] .stNumberInput input {
-    background: rgba(255,255,255,0.15) !important;
+    background: rgba(255,255,255,0.20) !important;
     color: #FFFFFF !important;
-    border: 1.5px solid rgba(0,186,242,0.5) !important;
+    border: 1.5px solid #00BAF2 !important;
     border-radius: 8px !important;
+    font-weight: 600 !important;
     caret-color: #00BAF2;
 }
 [data-testid="stSidebar"] .stTextInput input::placeholder,
 [data-testid="stSidebar"] .stNumberInput input::placeholder {
-    color: rgba(255,255,255,0.55) !important;
+    color: rgba(255,255,255,0.7) !important;
 }
 [data-testid="stSidebar"] .stSelectbox > div > div {
-    background: rgba(255,255,255,0.12) !important;
+    background: rgba(255,255,255,0.20) !important;
     color: #FFFFFF !important;
-    border: 1.5px solid rgba(0,186,242,0.5) !important;
+    border: 1.5px solid #00BAF2 !important;
     border-radius: 8px !important;
+    font-weight: 600 !important;
 }
 
 /* Sidebar expanders */
 [data-testid="stSidebar"] [data-testid="stExpander"] {
-    background: rgba(255,255,255,0.10) !important;
-    border: 1px solid rgba(0,186,242,0.3) !important;
+    background: rgba(255,255,255,0.12) !important;
+    border: 1.5px solid rgba(0,186,242,0.4) !important;
 }
-[data-testid="stSidebar"] [data-testid="stExpander"] summary { color: #FFFFFF !important; }
+[data-testid="stSidebar"] [data-testid="stExpander"] summary,
+[data-testid="stSidebar"] [data-testid="stExpander"] summary span,
+[data-testid="stSidebar"] [data-testid="stExpander"] summary p {
+    color: #FFFFFF !important;
+    font-weight: 700 !important;
+}
 [data-testid="stSidebar"] [data-testid="stExpander"] p,
 [data-testid="stSidebar"] [data-testid="stExpander"] span,
-[data-testid="stSidebar"] [data-testid="stExpander"] label { color: #FFFFFF !important; }
+[data-testid="stSidebar"] [data-testid="stExpander"] label {
+    color: #FFFFFF !important;
+}
 
 /* Sidebar buttons */
 [data-testid="stSidebar"] .stButton > button {
     background: linear-gradient(135deg, #00BAF2 0%, #0077B6 100%) !important;
     color: #FFFFFF !important;
+    font-weight: 800 !important;
+    border: 1px solid rgba(255,255,255,0.3) !important;
 }
 
 /* ── PAGE HEADER ── */
-.paytm-header { font-size: 1.9rem; font-weight: 800; color: #002970; letter-spacing: -0.5px; }
+.paytm-header { font-size: 1.9rem; font-weight: 900; color: #002970; letter-spacing: -0.5px; }
 .paytm-header span { color: #00BAF2; }
 
-/* ── Udhaar / alert cards ── */
+/* ── UDHAAR / ALERT CARDS ── */
 .alert-card {
-    background: #FFF5F5; padding: 0.8rem 1rem; border-radius: 10px;
-    border-left: 4px solid #EF4444; box-shadow: 0 2px 8px rgba(239,68,68,0.09);
-    margin: 0.35rem 0;
+    background: #FFF5F5; padding: 0.85rem 1rem; border-radius: 10px;
+    border-left: 4px solid #EF4444; box-shadow: 0 2px 8px rgba(239,68,68,0.12);
+    margin: 0.4rem 0;
+    border-top: 1px solid #FECACA;
+    border-right: 1px solid #FECACA;
+    border-bottom: 1px solid #FECACA;
 }
 .alert-card, .alert-card p, .alert-card span, .alert-card b, .alert-card small {
-    color: #1a1a1a !important;
+    color: #091E42 !important;
 }
-.alert-card b { color: #002970 !important; font-weight: 700 !important; }
-.alert-card small { color: #6B7280 !important; }
+.alert-card b { color: #991B1B !important; font-weight: 800 !important; }
+.alert-card small { color: #475569 !important; font-weight: 600 !important; }
 
-/* ── API key status badges ── */
+/* ── API KEY STATUS BADGES ── */
 .api-badge-ok {
     display: inline-flex; align-items: center; gap: 6px;
     background: #DCFCE7; color: #14532D !important;
-    border: 1.5px solid #86EFAC; border-radius: 20px;
-    padding: 5px 14px; font-size: 0.83rem; font-weight: 700; margin-top: 6px;
+    border: 1.5px solid #4ADE80; border-radius: 20px;
+    padding: 5px 14px; font-size: 0.85rem; font-weight: 800; margin-top: 6px;
 }
 .api-badge-none {
     display: inline-flex; align-items: center; gap: 6px;
     background: #FEF9C3; color: #713F12 !important;
-    border: 1.5px solid #FDE047; border-radius: 20px;
-    padding: 5px 14px; font-size: 0.83rem; font-weight: 700; margin-top: 6px;
+    border: 1.5px solid #FACC15; border-radius: 20px;
+    padding: 5px 14px; font-size: 0.85rem; font-weight: 800; margin-top: 6px;
 }
 
-/* ── Primary buttons ── */
+/* ── PRIMARY BUTTONS ── */
 .stButton > button {
     background: linear-gradient(135deg, #00BAF2 0%, #0088CC 100%) !important;
-    color: #FFFFFF !important; border-radius: 10px; border: none; font-weight: 700;
-    box-shadow: 0 3px 12px rgba(0,136,204,0.35); transition: all 0.18s ease;
+    color: #FFFFFF !important; border-radius: 10px; border: none; font-weight: 800;
+    box-shadow: 0 4px 14px rgba(0,136,204,0.40); transition: all 0.18s ease;
+    font-size: 1rem !important;
 }
 .stButton > button:hover {
     background: linear-gradient(135deg, #00CCFF 0%, #0099DD 100%) !important;
-    box-shadow: 0 5px 18px rgba(0,136,204,0.50) !important; transform: translateY(-1px);
+    box-shadow: 0 6px 20px rgba(0,136,204,0.60) !important; transform: translateY(-1px);
 }
 
-/* ── Plotly charts ── */
+/* ── PLOTLY CHARTS CONTAINER ── */
 [data-testid="stPlotlyChart"] {
     border-radius: 12px; overflow: hidden;
-    box-shadow: 0 2px 12px rgba(0,41,112,0.08); background: white;
+    box-shadow: 0 2px 12px rgba(0,41,112,0.10); background: #FFFFFF !important;
+    border: 1px solid #CBD5E1 !important;
 }
 
 /* ── SIDEBAR TOGGLE / COLLAPSE BUTTONS (<< and >>) ── */
@@ -208,29 +331,26 @@ code {
 button[data-testid="stSidebarCollapseButton"],
 button[data-testid="collapsedControl"],
 [data-testid="stSidebarCollapseButton"] button {
-    color: #00BAF2 !important;
-    background: rgba(0, 41, 112, 0.95) !important;
-    border: 1.5px solid #00BAF2 !important;
+    color: #FFFFFF !important;
+    background: #002970 !important;
+    border: 2px solid #00BAF2 !important;
     border-radius: 8px !important;
-    box-shadow: 0 2px 8px rgba(0, 186, 242, 0.35) !important;
+    box-shadow: 0 2px 10px rgba(0, 186, 242, 0.45) !important;
     visibility: visible !important;
     opacity: 1 !important;
 }
-
 [data-testid="stSidebarCollapseButton"] svg,
 [data-testid="collapsedControl"] svg,
 [data-testid="stSidebarCollapseButton"] path,
 [data-testid="collapsedControl"] path {
     fill: #00BAF2 !important;
     stroke: #00BAF2 !important;
-    stroke-width: 1.5px !important;
+    stroke-width: 2px !important;
     visibility: visible !important;
 }
-
 [data-testid="stSidebarCollapseButton"]:hover,
 [data-testid="collapsedControl"]:hover {
     background: #00BAF2 !important;
-    border-color: #002970 !important;
 }
 [data-testid="stSidebarCollapseButton"]:hover svg,
 [data-testid="collapsedControl"]:hover svg,
@@ -245,32 +365,33 @@ button[data-testid="collapsedControl"],
     border-radius: 12px !important;
 }
 [data-testid="stChatInput"] textarea {
-    color: #0F172A !important;
+    color: #091E42 !important;
     background: #FFFFFF !important;
-    border: 1.5px solid #00BAF2 !important;
+    border: 2px solid #00BAF2 !important;
     border-radius: 10px !important;
+    font-weight: 600 !important;
 }
 [data-testid="stChatInput"] textarea::placeholder {
-    color: #64748B !important;
+    color: #475569 !important;
+    font-weight: 500 !important;
 }
 [data-testid="stChatInput"] button {
     color: #00BAF2 !important;
 }
 [data-testid="stChatMessage"] {
     background: #FFFFFF !important;
-    border: 1px solid #E2E8F0 !important;
+    border: 1.5px solid #CBD5E1 !important;
     border-radius: 12px !important;
-    box-shadow: 0 1px 4px rgba(0,0,0,0.05) !important;
-    margin: 6px 0 !important;
+    box-shadow: 0 2px 6px rgba(0,41,112,0.06) !important;
+    margin: 8px 0 !important;
 }
 
-/* ── Footer ── */
+/* ── FOOTER ── */
 .paytm-footer {
-    text-align: center; color: #64748B; font-size: 0.78rem;
-    padding: 1rem 0 0.5rem; border-top: 1px solid #E2E8F0; margin-top: 1rem;
+    text-align: center; color: #475569; font-size: 0.82rem; font-weight: 600;
+    padding: 1.2rem 0 0.6rem; border-top: 1px solid #CBD5E1; margin-top: 1.2rem;
 }
 .paytm-footer b { color: #002970; }
-
 </style>
 """, unsafe_allow_html=True)
 
