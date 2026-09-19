@@ -26,37 +26,27 @@ if "active_profile" not in st.session_state:
 st.markdown("""
 <style>
 /* ── BASE PAGE ── */
-.stApp { background: #F4F7FA !important; color: #091E42 !important; }
+.stApp { background: #F4F7FA !important; color: #000000 !important; }
 .block-container { padding-top: 1.5rem !important; max-width: 1280px; }
 
-/* ── HEADER TOOLBAR, 3-DOTS MENU (⋮) & STATUS ICONS ── */
+/* ── HEADER TOOLBAR (Keep native clean bar with visible 3-dots ⋮) ── */
 header[data-testid="stHeader"] {
-    background: #002970 !important;
-}
-header[data-testid="stHeader"] * {
-    color: #FFFFFF !important;
-    fill: #FFFFFF !important;
-    stroke: #FFFFFF !important;
-    visibility: visible !important;
-    opacity: 1 !important;
-}
-header[data-testid="stHeader"] button,
-button[title="View app in Streamlit Community Cloud"],
-[data-testid="stStatusWidget"],
-[data-testid="stToolbar"] button,
-[data-testid="stMainMenu"] button {
-    color: #FFFFFF !important;
-    background: rgba(255, 255, 255, 0.15) !important;
-    border-radius: 8px !important;
-    border: 1px solid rgba(0, 186, 242, 0.5) !important;
+    background: rgba(244, 247, 250, 0.95) !important;
 }
 [data-testid="stToolbar"] svg,
 [data-testid="stMainMenu"] svg {
-    fill: #00BAF2 !important;
-    stroke: #00BAF2 !important;
+    fill: #002970 !important;
+    stroke: #002970 !important;
+    visibility: visible !important;
+}
+[data-testid="stToolbar"] button,
+[data-testid="stMainMenu"] button {
+    background: transparent !important;
+    border: none !important;
+    color: #002970 !important;
 }
 
-/* ── UNIVERSAL TEXT READABILITY (Ultra-dark & crisp) ── */
+/* ── ALL MAIN-AREA TEXT — PURE BLACK (#000000) FOR MAXIMUM VISIBILITY ── */
 .stApp p, .stApp li, .stApp span, .stApp div,
 .stMarkdown p, .stMarkdown li, .stMarkdown span,
 div[data-testid="stMarkdownContainer"] p,
@@ -64,8 +54,8 @@ div[data-testid="stMarkdownContainer"] li,
 div[data-testid="stMarkdownContainer"] span,
 div[data-testid="stMarkdownContainer"] strong,
 div[data-testid="stMarkdownContainer"] b {
-    color: #091E42 !important;
-    font-weight: 500;
+    color: #000000 !important;
+    font-weight: 600 !important;
 }
 .stApp h1, .stApp h2, .stApp h3, .stApp h4, .stApp h5 {
     color: #002970 !important;
@@ -73,12 +63,12 @@ div[data-testid="stMarkdownContainer"] b {
 }
 label, .stWidgetLabel, [data-testid="stWidgetLabel"] p {
     color: #002970 !important;
-    font-weight: 700 !important;
+    font-weight: 800 !important;
     font-size: 0.95rem !important;
 }
 .stCaption, small, .stApp small {
-    color: #334155 !important;
-    font-weight: 500 !important;
+    color: #1E293B !important;
+    font-weight: 600 !important;
 }
 
 /* ── METRIC CARDS TEXT ── */
@@ -86,7 +76,7 @@ label, .stWidgetLabel, [data-testid="stWidgetLabel"] p {
     background: #FFFFFF !important;
     padding: 12px 16px !important;
     border-radius: 12px !important;
-    border: 1px solid #CBD5E1 !important;
+    border: 1.5px solid #CBD5E1 !important;
     box-shadow: 0 2px 8px rgba(0,41,112,0.06) !important;
 }
 [data-testid="stMetric"] label,
@@ -104,10 +94,10 @@ label, .stWidgetLabel, [data-testid="stWidgetLabel"] p {
     font-weight: 700 !important;
 }
 
-/* ── INPUT FIELDS ON MAIN PAGE (High contrast) ── */
+/* ── INPUT FIELDS ON MAIN PAGE ── */
 .stTextInput input, .stNumberInput input, .stTextArea textarea {
     background: #FFFFFF !important;
-    color: #091E42 !important;
+    color: #000000 !important;
     border: 1.5px solid #00BAF2 !important;
     border-radius: 8px !important;
     font-weight: 600 !important;
@@ -120,12 +110,12 @@ label, .stWidgetLabel, [data-testid="stWidgetLabel"] p {
 /* ── SELECTBOX DROPDOWNS & MENUS ── */
 .stSelectbox > div > div {
     background: #FFFFFF !important;
-    color: #091E42 !important;
+    color: #000000 !important;
     border: 1.5px solid #00BAF2 !important;
     font-weight: 600 !important;
 }
 div[data-baseweb="select"] * {
-    color: #091E42 !important;
+    color: #000000 !important;
     font-weight: 600 !important;
 }
 div[data-baseweb="popover"] ul,
@@ -133,7 +123,7 @@ div[data-baseweb="menu"] {
     background: #FFFFFF !important;
 }
 div[data-baseweb="menu"] li {
-    color: #091E42 !important;
+    color: #000000 !important;
     background: #FFFFFF !important;
     font-weight: 600 !important;
 }
@@ -160,24 +150,24 @@ div[data-baseweb="menu"] li:hover {
 [data-testid="stExpander"] p,
 [data-testid="stExpander"] span,
 [data-testid="stExpander"] li {
-    color: #091E42 !important;
-    font-weight: 500 !important;
+    color: #000000 !important;
+    font-weight: 600 !important;
 }
 
 /* ── DATAFRAME / TABLE ── */
 [data-testid="stDataFrame"] td, [data-testid="stDataFrame"] th {
-    color: #091E42 !important;
-    font-weight: 600 !important;
+    color: #000000 !important;
+    font-weight: 700 !important;
 }
 [data-testid="stDataFrame"] {
-    border: 1px solid #CBD5E1 !important;
+    border: 1.5px solid #CBD5E1 !important;
     border-radius: 10px !important;
     overflow: hidden;
 }
 
 /* ── INFO / SUCCESS / ALERT BOXES ── */
 .stAlert p, .stAlert span {
-    color: #091E42 !important;
+    color: #000000 !important;
     font-weight: 600 !important;
 }
 
@@ -185,17 +175,17 @@ div[data-baseweb="menu"] li:hover {
 code {
     background: #EBF8FF !important;
     color: #002970 !important;
-    font-weight: 700 !important;
+    font-weight: 800 !important;
     border: 1px solid #BFDBFE !important;
     border-radius: 4px;
     padding: 2px 6px;
 }
 .stCodeBlock pre, .stCodeBlock code {
-    color: #091E42 !important;
+    color: #000000 !important;
     font-weight: 600 !important;
 }
 
-/* ── SIDEBAR — CRISP WHITE ON DEEP NAVY ── */
+/* ── SIDEBAR — WHITE ON DEEP NAVY ── */
 [data-testid="stSidebar"] {
     background: linear-gradient(180deg, #001A4A 0%, #002970 100%) !important;
     box-shadow: 4px 0 20px rgba(0,41,112,0.25) !important;
@@ -209,7 +199,7 @@ code {
 [data-testid="stSidebar"] small,
 [data-testid="stSidebar"] .stCaption {
     color: #FFFFFF !important;
-    font-weight: 500 !important;
+    font-weight: 600 !important;
 }
 [data-testid="stSidebar"] strong,
 [data-testid="stSidebar"] b {
@@ -238,7 +228,7 @@ code {
 }
 [data-testid="stSidebar"] .stTextInput input::placeholder,
 [data-testid="stSidebar"] .stNumberInput input::placeholder {
-    color: rgba(255,255,255,0.7) !important;
+    color: rgba(255,255,255,0.75) !important;
 }
 [data-testid="stSidebar"] .stSelectbox > div > div {
     background: rgba(255,255,255,0.20) !important;
@@ -287,10 +277,10 @@ code {
     border-bottom: 1px solid #FECACA;
 }
 .alert-card, .alert-card p, .alert-card span, .alert-card b, .alert-card small {
-    color: #091E42 !important;
+    color: #000000 !important;
 }
 .alert-card b { color: #991B1B !important; font-weight: 800 !important; }
-.alert-card small { color: #475569 !important; font-weight: 600 !important; }
+.alert-card small { color: #334155 !important; font-weight: 600 !important; }
 
 /* ── API KEY STATUS BADGES ── */
 .api-badge-ok {
@@ -322,42 +312,20 @@ code {
 [data-testid="stPlotlyChart"] {
     border-radius: 12px; overflow: hidden;
     box-shadow: 0 2px 12px rgba(0,41,112,0.10); background: #FFFFFF !important;
-    border: 1px solid #CBD5E1 !important;
+    border: 1.5px solid #CBD5E1 !important;
 }
 
-/* ── SIDEBAR TOGGLE / COLLAPSE BUTTONS (<< and >>) ── */
-[data-testid="stSidebarCollapseButton"],
-[data-testid="collapsedControl"],
-button[data-testid="stSidebarCollapseButton"],
-button[data-testid="collapsedControl"],
-[data-testid="stSidebarCollapseButton"] button {
-    color: #FFFFFF !important;
-    background: #002970 !important;
-    border: 2px solid #00BAF2 !important;
-    border-radius: 8px !important;
-    box-shadow: 0 2px 10px rgba(0, 186, 242, 0.45) !important;
-    visibility: visible !important;
-    opacity: 1 !important;
+/* ── SIDEBAR COLLAPSE ICON (Clean arrow with NO white box) ── */
+[data-testid="stSidebarCollapseButton"] button,
+[data-testid="collapsedControl"] button {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
 }
 [data-testid="stSidebarCollapseButton"] svg,
-[data-testid="collapsedControl"] svg,
-[data-testid="stSidebarCollapseButton"] path,
-[data-testid="collapsedControl"] path {
+[data-testid="collapsedControl"] svg {
     fill: #00BAF2 !important;
     stroke: #00BAF2 !important;
-    stroke-width: 2px !important;
-    visibility: visible !important;
-}
-[data-testid="stSidebarCollapseButton"]:hover,
-[data-testid="collapsedControl"]:hover {
-    background: #00BAF2 !important;
-}
-[data-testid="stSidebarCollapseButton"]:hover svg,
-[data-testid="collapsedControl"]:hover svg,
-[data-testid="stSidebarCollapseButton"]:hover path,
-[data-testid="collapsedControl"]:hover path {
-    fill: #002970 !important;
-    stroke: #002970 !important;
 }
 
 /* ── CHAT INPUT BAR & MESSAGES ── */
@@ -365,7 +333,7 @@ button[data-testid="collapsedControl"],
     border-radius: 12px !important;
 }
 [data-testid="stChatInput"] textarea {
-    color: #091E42 !important;
+    color: #000000 !important;
     background: #FFFFFF !important;
     border: 2px solid #00BAF2 !important;
     border-radius: 10px !important;
@@ -388,7 +356,7 @@ button[data-testid="collapsedControl"],
 
 /* ── FOOTER ── */
 .paytm-footer {
-    text-align: center; color: #475569; font-size: 0.82rem; font-weight: 600;
+    text-align: center; color: #334155; font-size: 0.82rem; font-weight: 700;
     padding: 1.2rem 0 0.6rem; border-top: 1px solid #CBD5E1; margin-top: 1.2rem;
 }
 .paytm-footer b { color: #002970; }
