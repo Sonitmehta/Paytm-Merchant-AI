@@ -202,12 +202,75 @@ code {
     box-shadow: 0 2px 12px rgba(0,41,112,0.08); background: white;
 }
 
+/* ── SIDEBAR TOGGLE / COLLAPSE BUTTONS (<< and >>) ── */
+[data-testid="stSidebarCollapseButton"],
+[data-testid="collapsedControl"],
+button[data-testid="stSidebarCollapseButton"],
+button[data-testid="collapsedControl"],
+[data-testid="stSidebarCollapseButton"] button {
+    color: #00BAF2 !important;
+    background: rgba(0, 41, 112, 0.95) !important;
+    border: 1.5px solid #00BAF2 !important;
+    border-radius: 8px !important;
+    box-shadow: 0 2px 8px rgba(0, 186, 242, 0.35) !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+
+[data-testid="stSidebarCollapseButton"] svg,
+[data-testid="collapsedControl"] svg,
+[data-testid="stSidebarCollapseButton"] path,
+[data-testid="collapsedControl"] path {
+    fill: #00BAF2 !important;
+    stroke: #00BAF2 !important;
+    stroke-width: 1.5px !important;
+    visibility: visible !important;
+}
+
+[data-testid="stSidebarCollapseButton"]:hover,
+[data-testid="collapsedControl"]:hover {
+    background: #00BAF2 !important;
+    border-color: #002970 !important;
+}
+[data-testid="stSidebarCollapseButton"]:hover svg,
+[data-testid="collapsedControl"]:hover svg,
+[data-testid="stSidebarCollapseButton"]:hover path,
+[data-testid="collapsedControl"]:hover path {
+    fill: #002970 !important;
+    stroke: #002970 !important;
+}
+
+/* ── CHAT INPUT BAR & MESSAGES ── */
+[data-testid="stChatInput"] {
+    border-radius: 12px !important;
+}
+[data-testid="stChatInput"] textarea {
+    color: #0F172A !important;
+    background: #FFFFFF !important;
+    border: 1.5px solid #00BAF2 !important;
+    border-radius: 10px !important;
+}
+[data-testid="stChatInput"] textarea::placeholder {
+    color: #64748B !important;
+}
+[data-testid="stChatInput"] button {
+    color: #00BAF2 !important;
+}
+[data-testid="stChatMessage"] {
+    background: #FFFFFF !important;
+    border: 1px solid #E2E8F0 !important;
+    border-radius: 12px !important;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.05) !important;
+    margin: 6px 0 !important;
+}
+
 /* ── Footer ── */
 .paytm-footer {
     text-align: center; color: #64748B; font-size: 0.78rem;
     padding: 1rem 0 0.5rem; border-top: 1px solid #E2E8F0; margin-top: 1rem;
 }
 .paytm-footer b { color: #002970; }
+
 </style>
 """, unsafe_allow_html=True)
 
