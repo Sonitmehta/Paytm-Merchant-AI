@@ -687,6 +687,12 @@ if run_scan:
             key = api_key if (api_key and len(api_key) > 10) else ""
             result = agent.run_autonomous_scan(key)
             output = result.get('output', 'Scan complete.')
+            
+            # Keep chat clean: Remove any previous Business Health Check so it never duplicates
+            st.session_state.messages = [
+                m for m in st.session_state.messages 
+                if "Business Health Check" not in m.get('content', '')
+            ]
             st.session_state.messages.append({'role': 'assistant', 'content': output})
             st.session_state.action_log = get_action_log()
             st.rerun()
