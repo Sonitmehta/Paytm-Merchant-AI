@@ -73,7 +73,7 @@ button[title="View app in Streamlit Community Cloud"],
 .paytm-header {
     font-size: 2.2rem;
     font-weight: 900;
-    color: #001538 !important;
+    color: #000000 !important;
     letter-spacing: -0.5px;
     margin-bottom: 2px;
 }
@@ -325,6 +325,16 @@ label, .stWidgetLabel, [data-testid="stWidgetLabel"] p {
     border-radius: 4px !important;
     font-weight: 700 !important;
 }
+/* Multiline code blocks (Offer texts, Payment reminder messages) in Light Mode */
+[data-testid="stExpander"] pre,
+[data-testid="stExpander"] pre code,
+[data-testid="stExpander"] [data-testid="stCodeBlock"],
+[data-testid="stExpander"] [data-testid="stCodeBlock"] * {
+    background: #F8FAFC !important;
+    color: #0F172A !important;
+    font-weight: 700 !important;
+    border-color: #CBD5E1 !important;
+}
 @media (prefers-color-scheme: dark) {
     [data-testid="stExpander"] {
         background: #001A4A !important;
@@ -348,6 +358,14 @@ label, .stWidgetLabel, [data-testid="stWidgetLabel"] p {
         background: rgba(0, 186, 242, 0.15) !important;
         color: #E0F2FE !important;
         border: 1px solid #00BAF2 !important;
+    }
+    [data-testid="stExpander"] pre,
+    [data-testid="stExpander"] pre code,
+    [data-testid="stExpander"] [data-testid="stCodeBlock"],
+    [data-testid="stExpander"] [data-testid="stCodeBlock"] * {
+        background: #001538 !important;
+        color: #E0F2FE !important;
+        border-color: #00BAF2 !important;
     }
 }
 .action-info-banner {
