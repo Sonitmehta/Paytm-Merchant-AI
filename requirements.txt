@@ -1,9 +1,11 @@
 langchain>=0.2.0
 langchain-google-genai>=1.0.0
 langchain-community>=0.2.0
+langgraph>=0.0.60
 google-generativeai>=0.7.0
 streamlit>=1.35.0
 pandas>=2.0.0
 plotly>=5.0.0
 python-dotenv>=1.0.0
 requests>=2.31.0
+pillow>=10.0.0
